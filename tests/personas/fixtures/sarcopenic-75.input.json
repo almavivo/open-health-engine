@@ -1,0 +1,23 @@
+{
+  "primary_goal": "healthy_aging",
+  "age_band": "70_79",
+  "sex": "male",
+  "medication_profile": "some_rx",
+  "blood_thinner_use": "no",
+  "daily_aspirin_or_nsaid": "no",
+  "thyroid_disorder": "no",
+  "kidney_history": "no",
+  "liver_history": "no",
+  "red_flag_symptoms": "no_red_flags",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_2_to_3",
+  "fish_intake": "weekly",
+  "sun_exposure": "none_or_low",
+  "alcohol_units_weekly": "alc_1_to_7",
+  "tobacco_use": "smoking_never",
+  "sleep_quality": "fair",
+  "stress_load": "moderate",
+  "exercise_pattern": "mostly_sedentary",
+  "weight_change_recent": "lost_weight",
+  "strength_sessions_weekly": "zero_strength"
+}

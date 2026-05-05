@@ -1,0 +1,56 @@
+{
+  "name": "@almavivo/engine",
+  "version": "0.1.0",
+  "description": "Open clinical decision-support engine — supplement and lab recommendations with auditable safety guards.",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/almavivo/open-health-engine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almavivo/open-health-engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/almavivo/open-health-engine/issues"
+  },
+  "keywords": [
+    "supplement",
+    "clinical-decision-support",
+    "rules-engine",
+    "evidence-based",
+    "health",
+    "nutrition",
+    "lab-recommendations"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "MEDICAL-DISCLAIMER.md",
+    "CONTRIBUTING.md",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "fast-check": "^4.7.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

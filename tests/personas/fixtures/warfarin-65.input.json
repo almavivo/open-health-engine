@@ -1,0 +1,21 @@
+{
+  "primary_goal": "cognitive_longevity",
+  "age_band": "60_69",
+  "sex": "male",
+  "medication_profile": "some_rx",
+  "blood_thinner_use": "yes",
+  "daily_aspirin_or_nsaid": "no",
+  "thyroid_disorder": "no",
+  "kidney_history": "no",
+  "liver_history": "no",
+  "red_flag_symptoms": "no_red_flags",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_2_to_3",
+  "fish_intake": "weekly",
+  "sun_exposure": "moderate",
+  "alcohol_units_weekly": "alc_1_to_7",
+  "tobacco_use": "smoking_former_remote",
+  "sleep_quality": "good",
+  "stress_load": "moderate",
+  "exercise_pattern": "light_activity"
+}

@@ -1,0 +1,504 @@
+{
+  "riskFlags": [
+    "low_produce_intake",
+    "needs_clinician_review",
+    "under_18"
+  ],
+  "stack": [
+    {
+      "id": "protein_powder",
+      "status": "recommended",
+      "category": "core_stack"
+    },
+    {
+      "id": "vitamin_d3",
+      "status": "recommended",
+      "category": "core_stack"
+    }
+  ],
+  "worthConsidering": [],
+  "excluded": [
+    {
+      "id": "iron",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_b12",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "psyllium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "omega3",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "probiotic",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "calcium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "multivitamin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "magnesium",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "creatine_monohydrate",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "melatonin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "reishi",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "ashwagandha",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_theanine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "glycine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "apigenin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_tryptophan",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "holy_basil",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "lions_mane",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "rhodiola",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "saffron",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "citicoline",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "alpha_gpc",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_tyrosine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "bacopa",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "phosphatidylserine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "caffeine_theanine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "coq10",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "msm",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "glucosamine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "chondroitin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "collagen_peptides",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "vitamin_k2_mk7",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "curcumin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "boswellia",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "hyaluronic_acid_oral",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "vitamin_c",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "zinc",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "riboflavin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "folate",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "vitamin_b6",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "thiamine_b1",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "beta_alanine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "citrulline",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "beetroot_nitrates",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "taurine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "sodium_bicarbonate",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "electrolytes",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "hmb",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "berberine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "nac",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "ala",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "plant_sterols",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "garlic_extract",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "niacin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "red_yeast_rice",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "five_htp",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "sam_e",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "valerian",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "lavender_silexan",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "tart_cherry",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "lemon_balm",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "passionflower",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "kava",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "choline",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "iodine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "selenium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "copper",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "boron",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "vitamin_a",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_e",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "myo_inositol",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "soy_isoflavones",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "black_cohosh",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitex",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "evening_primrose",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "biotin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "silica",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "lgg_probiotic",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "s_boulardii",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "b_infantis_35624",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "inulin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "phgg",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "peppermint_oil",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "ginger",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "dgl",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_glutamine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "eleuthero",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "panax_ginseng",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "schisandra",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "cordyceps",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "maca",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "tongkat_ali",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "cinnamon_ceylon",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "alcar",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "spirulina",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "chlorella",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "krill_oil",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "nmn",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "nicotinamide_riboside",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "pqq",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "resveratrol",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "pterostilbene",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "spermidine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "quercetin",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "bromelain",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "pycnogenol",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "olive_leaf_extract",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "chromium_picolinate",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "gymnema",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "fenugreek",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "dim",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "saw_palmetto",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "tribulus",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "mct_oil",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_carnitine",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_plantarum_299v",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "l_reuteri_dsm_17938",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "b_lactis_bb12",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "mag_threonate",
+      "status": "needs_clinician_review"
+    },
+    {
+      "id": "colostrum",
+      "status": "needs_clinician_review"
+    }
+  ],
+  "labCount": 0,
+  "nudgeCount": 1
+}

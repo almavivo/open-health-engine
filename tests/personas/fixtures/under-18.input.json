@@ -1,0 +1,17 @@
+{
+  "primary_goal": "energy",
+  "age_band": "under_18",
+  "sex": "male",
+  "medication_profile": "no",
+  "blood_thinner_use": "no",
+  "daily_aspirin_or_nsaid": "no",
+  "red_flag_symptoms": "no_red_flags",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_zero_to_1",
+  "sun_exposure": "moderate",
+  "alcohol_units_weekly": "alc_zero",
+  "tobacco_use": "smoking_never",
+  "sleep_quality": "poor",
+  "stress_load": "moderate",
+  "exercise_pattern": "mixed_training"
+}

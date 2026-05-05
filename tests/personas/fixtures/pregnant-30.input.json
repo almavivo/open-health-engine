@@ -1,0 +1,22 @@
+{
+  "primary_goal": "general_nutrition",
+  "age_band": "30_44",
+  "sex": "female",
+  "pregnant_or_breastfeeding": "yes",
+  "medication_profile": "no",
+  "blood_thinner_use": "no",
+  "daily_aspirin_or_nsaid": "no",
+  "thyroid_disorder": "no",
+  "kidney_history": "no",
+  "liver_history": "no",
+  "red_flag_symptoms": "no_red_flags",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_2_to_3",
+  "fish_intake": "weekly",
+  "sun_exposure": "moderate",
+  "alcohol_units_weekly": "alc_zero",
+  "tobacco_use": "smoking_never",
+  "sleep_quality": "fair",
+  "stress_load": "moderate",
+  "exercise_pattern": "light_activity"
+}

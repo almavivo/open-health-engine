@@ -1,0 +1,489 @@
+{
+  "riskFlags": [],
+  "stack": [
+    {
+      "id": "protein_powder",
+      "status": "recommended",
+      "category": "core_stack"
+    },
+    {
+      "id": "vitamin_d3",
+      "status": "recommended",
+      "category": "core_stack"
+    }
+  ],
+  "worthConsidering": [
+    {
+      "id": "iron",
+      "status": "worth_considering"
+    },
+    {
+      "id": "beta_alanine",
+      "status": "worth_considering"
+    },
+    {
+      "id": "citrulline",
+      "status": "worth_considering"
+    },
+    {
+      "id": "l_theanine",
+      "status": "worth_considering"
+    },
+    {
+      "id": "electrolytes",
+      "status": "worth_considering"
+    },
+    {
+      "id": "lavender_silexan",
+      "status": "worth_considering"
+    },
+    {
+      "id": "tart_cherry",
+      "status": "worth_considering"
+    },
+    {
+      "id": "multivitamin",
+      "status": "worth_considering"
+    },
+    {
+      "id": "taurine",
+      "status": "worth_considering"
+    },
+    {
+      "id": "sodium_bicarbonate",
+      "status": "worth_considering"
+    },
+    {
+      "id": "copper",
+      "status": "worth_considering"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "vitamin_b12",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "magnesium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "psyllium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "omega3",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "caffeine_theanine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "coq10",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "zinc",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "probiotic",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "citicoline",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "curcumin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_c",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "riboflavin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "plant_sterols",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "bacopa",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "msm",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "glucosamine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "collagen_peptides",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_k2_mk7",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "calcium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "folate",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "beetroot_nitrates",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "berberine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "lgg_probiotic",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "s_boulardii",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "peppermint_oil",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_plantarum_299v",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "glycine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "alpha_gpc",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_tyrosine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "phosphatidylserine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "chondroitin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "ala",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "b_infantis_35624",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_tryptophan",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "boswellia",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_b6",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "thiamine_b1",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "nac",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "garlic_extract",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "choline",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "myo_inositol",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "inulin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "phgg",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "alcar",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "krill_oil",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "pycnogenol",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_reuteri_dsm_17938",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "b_lactis_bb12",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "ashwagandha",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "rhodiola",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "hyaluronic_acid_oral",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "sam_e",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "iodine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "selenium",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "soy_isoflavones",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "ginger",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "panax_ginseng",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "tongkat_ali",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_carnitine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "apigenin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "lions_mane",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "hmb",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "niacin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "red_yeast_rice",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "five_htp",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "valerian",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "lemon_balm",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitex",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "dgl",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "maca",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "spirulina",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "nmn",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "nicotinamide_riboside",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "quercetin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "bromelain",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "olive_leaf_extract",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "saw_palmetto",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "mct_oil",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "mag_threonate",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "colostrum",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "passionflower",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "reishi",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "boron",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "black_cohosh",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "evening_primrose",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "l_glutamine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "eleuthero",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "cinnamon_ceylon",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "resveratrol",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "chromium_picolinate",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "gymnema",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "fenugreek",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "kava",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_a",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "vitamin_e",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "silica",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "schisandra",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "chlorella",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "pqq",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "pterostilbene",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "spermidine",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "dim",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "biotin",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "tribulus",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "creatine_monohydrate",
+      "status": "do_not_recommend"
+    },
+    {
+      "id": "melatonin",
+      "status": "do_not_recommend"
+    }
+  ],
+  "labCount": 12,
+  "nudgeCount": 0
+}

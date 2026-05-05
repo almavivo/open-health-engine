@@ -1,0 +1,21 @@
+{
+  "primary_goal": "healthy_aging",
+  "age_band": "80_plus",
+  "sex": "female",
+  "medication_profile": "polypharmacy",
+  "blood_thinner_use": "no",
+  "daily_aspirin_or_nsaid": "no",
+  "thyroid_disorder": "no",
+  "kidney_history": "no",
+  "liver_history": "no",
+  "red_flag_symptoms": "no_red_flags",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_2_to_3",
+  "fish_intake": "weekly",
+  "sun_exposure": "none_or_low",
+  "alcohol_units_weekly": "alc_zero",
+  "tobacco_use": "smoking_never",
+  "sleep_quality": "fair",
+  "stress_load": "moderate",
+  "exercise_pattern": "light_activity"
+}

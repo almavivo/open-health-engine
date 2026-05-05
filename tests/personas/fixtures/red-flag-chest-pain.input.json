@@ -1,0 +1,20 @@
+{
+  "primary_goal": "energy",
+  "age_band": "45_59",
+  "sex": "male",
+  "medication_profile": "no",
+  "blood_thinner_use": "no",
+  "daily_aspirin_or_nsaid": "no",
+  "thyroid_disorder": "no",
+  "kidney_history": "no",
+  "liver_history": "no",
+  "red_flag_symptoms": "rf_chest_pain",
+  "diet_pattern": "omnivore",
+  "fruit_veg_servings": "fv_2_to_3",
+  "sun_exposure": "moderate",
+  "alcohol_units_weekly": "alc_1_to_7",
+  "tobacco_use": "smoking_never",
+  "sleep_quality": "fair",
+  "stress_load": "high",
+  "exercise_pattern": "mostly_sedentary"
+}
