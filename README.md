@@ -402,7 +402,7 @@ maintainers in advance.
 ├── tsconfig.json                   Emits .d.ts for the package
 ├── vitest.config.ts
 └── .github/
-    ├── workflows/ci.yml            typecheck + test + build on Node 18/20/22
+    ├── workflows/ci.yml            typecheck + test + build on Node 20/22
     └── PULL_REQUEST_TEMPLATE/clinician_review.md
 ```
 
