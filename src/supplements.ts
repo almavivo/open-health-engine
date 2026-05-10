@@ -751,6 +751,8 @@ export const supplementCatalog: SupplementRule[] = [
     ],
     excludeIf: [
       { questionId: "lab_vitamin_d_status", includes: ["high"] },
+    ],
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_vitamin_d"] },
     ],
     clinicianReviewIf: [
@@ -890,6 +892,8 @@ export const supplementCatalog: SupplementRule[] = [
       { questionId: "blood_thinner_use", includes: ["yes", "not_sure"] },
       { questionId: "daily_aspirin_or_nsaid", includes: ["yes", "not_sure"] },
       { questionId: "known_allergies", includes: ["allergy_fish", "allergy_shellfish"] },
+    ],
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_omega3"] },
     ],
     clinicianReviewIf: [
@@ -1011,6 +1015,8 @@ export const supplementCatalog: SupplementRule[] = [
     ],
     excludeIf: [
       { questionId: "lab_ferritin_status", includes: ["high"] },
+    ],
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_iron"] },
     ],
     clinicianReviewIf: [
@@ -1252,6 +1258,7 @@ export const supplementCatalog: SupplementRule[] = [
     ],
     boostIf: [
       { questionId: "sleep_issue", includes: ["sleep_onset"] },
+      { questionId: "shift_schedule_type", includes: ["fixed_nights", "rotating_forward"] },
     ],
     excludeIf: [
       { questionId: "pregnant_or_breastfeeding", includes: ["yes", "not_sure"] },
@@ -1259,6 +1266,7 @@ export const supplementCatalog: SupplementRule[] = [
     clinicianReviewIf: [
       { questionId: "blood_thinner_use", includes: ["yes", "not_sure"] },
       { questionId: "age_band", includes: ["60_69", "70_79", "80_plus"] },
+      { questionId: "ssri_or_serotonergic_use", includes: ["yes", "not_sure"] },
     ],
   },
   {
@@ -2479,7 +2487,7 @@ export const supplementCatalog: SupplementRule[] = [
     boostIf: [
       { questionId: "derived_zinc_signal", includes: ["signal_strong", "signal_moderate"] },
     ],
-    excludeIf: [
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_zinc"] },
     ],
     whyNotPrimary: ["narrower_indication"],
@@ -2586,7 +2594,7 @@ export const supplementCatalog: SupplementRule[] = [
       { questionId: "derived_b_complex_signal", includes: ["signal_strong"] },
       { questionId: "derived_diet_quality_risk", includes: ["risk_high"] },
     ],
-    excludeIf: [
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_multivitamin"] },
     ],
     whyNotPrimary: ["smaller_effect_size", "overlap_with_primary"],
@@ -2630,7 +2638,7 @@ export const supplementCatalog: SupplementRule[] = [
         effectSize: "modest",
       },
     ],
-    excludeIf: [
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_calcium"] },
     ],
     clinicianReviewIf: [
@@ -4789,6 +4797,8 @@ export const supplementCatalog: SupplementRule[] = [
       { questionId: "blood_thinner_use", includes: ["yes", "not_sure"] },
       { questionId: "daily_aspirin_or_nsaid", includes: ["yes", "not_sure"] },
       { questionId: "known_allergies", includes: ["allergy_fish", "allergy_shellfish"] },
+    ],
+    alreadyTakingIf: [
       { questionId: "existing_supplements", includes: ["supp_omega3"] },
     ],
     whyNotPrimary: ["overlap_with_primary"],

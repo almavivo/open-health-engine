@@ -138,7 +138,7 @@ const LAB_SPECS: Record<string, LabSpec> = {
     caveats:
       "USPSTF says evidence is insufficient for universal screening — frame this as targeted, not routine. Do NOT order 1,25-OH vitamin D for deficiency screening; it's a different, specialist test.",
     fasting: "none",
-    guidelineAnchor: "Endocrine Society 2011",
+    guidelineAnchor: "Endocrine Society 2024 (against routine screening in healthy adults <75); USPSTF insufficient evidence",
   },
   b12: {
     id: "b12",
@@ -574,10 +574,10 @@ const LAB_SPECS: Record<string, LabSpec> = {
     id: "dexa",
     name: "DEXA bone density scan",
     domain: "bone_health",
-    measures: "Bone mineral density — recommended in women ≥65 and men ≥70, earlier with risk factors.",
+    measures: "Bone mineral density — Grade B in women ≥65; in men, risk-factor-based discussion (USPSTF Grade I — insufficient evidence for routine screening).",
     caveats: "Low-dose imaging, not a blood test. Defer if pregnancy is possible.",
     fasting: "none",
-    guidelineAnchor: "USPSTF",
+    guidelineAnchor: "USPSTF 2025 (women ≥65 Grade B; men Grade I)",
   },
 
   // -------------------- Pre-conception / fertility --------------------
@@ -652,8 +652,9 @@ function isPregnantOrTrying(answers: AnswerMap): boolean {
 
 const TIER_RANK: Record<LabTier, number> = {
   optional: 0,
-  recommended: 1,
-  strongly_recommended: 2,
+  discuss: 1,
+  recommended: 2,
+  strongly_recommended: 3,
 };
 
 function strongerTier(a: LabTier, b: LabTier): LabTier {
@@ -709,22 +710,26 @@ function applyBaselineAdultRules(answers: AnswerMap, acc: Map<string, PendingLab
   const senior = isSenior(answers);
   const midlifeOrOlder = earlyMidlife || lateMidlife || senior;
 
-  // CBC + CMP — annual physical workhorses. Recommended from 30, optional
-  // for younger adults as a baseline.
+  // CBC + CMP — common at annual physicals in some healthcare contexts but
+  // not anchored to a USPSTF recommendation. UK/NHS practice does not
+  // include routine CBC/CMP in asymptomatic adults outside of medication
+  // monitoring, pregnancy, or symptoms. Demoted to "discuss" with a copy
+  // pointer to the legitimate triggers (medication monitoring, symptoms,
+  // pregnancy, known condition).
   if (midlifeOrOlder) {
     add(
       acc,
       "cbc",
-      senior ? "strongly_recommended" : "recommended",
-      "From midlife onward, an annual CBC catches anaemia, infection markers, and platelet abnormalities long before symptoms appear.",
-      "annual screen",
+      "discuss",
+      "Common in some healthcare contexts at annual physicals; not anchored to a USPSTF recommendation. Discuss with your clinician whether useful in your own care — typically more relevant when you're on medications that need monitoring, have specific symptoms, are pregnant, or have a known condition.",
+      "discuss with clinician",
     );
     add(
       acc,
       "cmp",
-      senior || lateMidlife ? "strongly_recommended" : "recommended",
-      "A comprehensive metabolic panel covers kidney function, liver enzymes, electrolytes, glucose, and protein in one draw — the foundation of an annual check from midlife onward.",
-      "annual screen",
+      "discuss",
+      "Common in some healthcare contexts at annual physicals; not anchored to a USPSTF recommendation. Discuss with your clinician whether useful in your own care — typically more relevant when you're on medications that need monitoring, have specific symptoms, are pregnant, or have a known condition.",
+      "discuss with clinician",
     );
   } else if (young) {
     add(
@@ -813,19 +818,42 @@ function applyBaselineAdultRules(answers: AnswerMap, acc: Map<string, PendingLab
     );
   }
 
-  // Vitamin D — universal screening isn't supported by USPSTF, but it's
-  // widely ordered and the cost is low. Optional baseline for any adult.
-  add(
-    acc,
-    "vitamin_d",
-    answers.sun_exposure === "none_or_low" || senior ? "recommended" : "optional",
-    answers.sun_exposure === "none_or_low"
-      ? "Low sun exposure makes a one-time vitamin D check informative before deciding on a dose."
-      : senior
-        ? "Vitamin D status drops with age and lower skin synthesis. A periodic check is reasonable."
-        : "Vitamin D testing isn't universally recommended, but a one-off baseline is informative for most adults.",
-    "vitamin D baseline",
-  );
+  // Vitamin D — Endocrine Society 2024 advises against routine 25-OH-D
+  // testing in generally healthy adults under 75. Specific populations
+  // benefit: ≥75 (we use age_band 80_plus as the proxy), pregnancy,
+  // suspected malabsorption, CKD, and symptom-driven cases. Everyone
+  // else gets a "discuss" framing rather than a routine order.
+  const vdPregnancy = isPregnantOrTrying(answers);
+  const vdMalabsorption =
+    answers.bowel_pattern === "bowel_3_plus_per_day" ||
+    answers.bowel_pattern === "bowel_less_than_3_per_week";
+  const vdCKD = answers.kidney_history === "yes";
+  const vdOverProxy = age === "80_plus";
+  const vdRecommended = vdPregnancy || vdMalabsorption || vdCKD || vdOverProxy;
+
+  if (vdRecommended) {
+    add(
+      acc,
+      "vitamin_d",
+      "recommended",
+      vdPregnancy
+        ? "Pregnancy is a population the 2024 Endocrine Society guidance singles out for vitamin D testing/supplementation under clinician supervision."
+        : vdMalabsorption
+          ? "Bowel patterns suggesting possible malabsorption (IBD, celiac, post-bariatric contexts) are a population the 2024 Endocrine Society guidance singles out for vitamin D testing."
+          : vdCKD
+            ? "Chronic kidney disease alters vitamin D metabolism — the 2024 Endocrine Society guidance singles this group out for vitamin D testing."
+            : "Adults ≥75 are a population the 2024 Endocrine Society guidance singles out for vitamin D testing/supplementation.",
+      "vitamin D — targeted",
+    );
+  } else {
+    add(
+      acc,
+      "vitamin_d",
+      "discuss",
+      "The 2024 Endocrine Society guideline advises against routine 25-OH-D testing in generally healthy adults under 75; USPSTF finds insufficient evidence either way. Worth raising with your clinician if you have low sun exposure, bone-pain or fragility-fracture symptoms, or a condition that affects vitamin D metabolism.",
+      "vitamin D — discuss",
+    );
+  }
 
   // B12 — same logic. Cheap, common deficiency past 60 (absorption falls).
   if (senior) {
@@ -919,17 +947,24 @@ function applyBaselineAdultRules(answers: AnswerMap, acc: Map<string, PendingLab
     );
   }
 
-  // Bone density — USPSTF recommends DEXA in women ≥65 and men ≥70.
-  if (
-    (answers.sex === "female" && (age === "60_69" || age === "70_79" || age === "80_plus")) ||
-    (answers.sex === "male" && (age === "70_79" || age === "80_plus"))
-  ) {
+  // Bone density — USPSTF (2025) is Grade B for women ≥65; for men USPSTF
+  // gives Grade I (insufficient evidence for routine screening). Older men
+  // get a risk-factor-based discussion rather than age-based screening.
+  if (answers.sex === "female" && (age === "60_69" || age === "70_79" || age === "80_plus")) {
     add(
       acc,
       "dexa",
       "recommended",
-      "USPSTF recommends DEXA bone-density screening for women ≥65 and men ≥70. Earlier with risk factors.",
+      "USPSTF (2025) Grade B for women ≥65. Earlier consideration is reasonable with risk factors (low BMI, smoking, family history of fracture, glucocorticoid use).",
       "bone screen",
+    );
+  } else if (answers.sex === "male" && (age === "70_79" || age === "80_plus")) {
+    add(
+      acc,
+      "dexa",
+      "discuss",
+      "USPSTF gives Grade I (insufficient evidence) for routine bone-density screening in men. Worth a clinician-led discussion if risk factors are present: long-term steroids, hypogonadism, prior fragility fracture, or significant unexplained weight loss.",
+      "bone discussion",
     );
   } else if (answers.sex === "female" && lateMidlife) {
     add(
@@ -1789,15 +1824,21 @@ function applyBoneRules(answers: AnswerMap, acc: Map<string, PendingLab>) {
   const lowSun = answers.sun_exposure === "none_or_low";
   const vegan = has(answers, "diet_pattern", "vegan");
 
-  if (olderFemale || olderMale) {
+  if (olderFemale) {
     add(
       acc,
       "dexa",
       "recommended",
-      olderFemale
-        ? "DEXA bone-density screening is recommended for women ≥65 (or earlier post-menopause with risk factors)."
-        : "DEXA is recommended for men ≥70.",
+      "USPSTF (2025) Grade B for women ≥65; earlier consideration is reasonable post-menopause with risk factors.",
       "bone density",
+    );
+  } else if (olderMale) {
+    add(
+      acc,
+      "dexa",
+      "discuss",
+      "USPSTF gives Grade I (insufficient evidence) for routine bone-density screening in men. Worth a clinician-led discussion if risk factors are present: long-term steroids, hypogonadism, prior fragility fracture, or significant unexplained weight loss.",
+      "bone discussion",
     );
   } else if (lowBMI) {
     add(

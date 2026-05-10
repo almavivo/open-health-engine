@@ -1,6 +1,6 @@
 {
   "name": "@almavivo/engine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Open clinical decision-support engine — supplement and lab recommendations with auditable safety guards.",
   "license": "Apache-2.0",
   "homepage": "https://github.com/almavivo/open-health-engine",
@@ -32,6 +32,7 @@
   "files": [
     "dist",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE",
     "MEDICAL-DISCLAIMER.md",
     "CONTRIBUTING.md",

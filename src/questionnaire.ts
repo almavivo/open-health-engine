@@ -3,6 +3,9 @@ import { QuestionDefinition } from "./types";
 export const QUESTIONNAIRE_SCHEMA_VERSION = "2026-05-02.v1";
 
 export const questionnaire: QuestionDefinition[] = [
+  // ─────────────────────────────────────────────────────────────────
+  // Section: goals
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "primary_goal",
     section: "goals",
@@ -25,6 +28,11 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "healthy_aging", label: "Healthy aging (general longevity)" },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: safety  (About you — basics, red flags, conditions,
+  //                    medications, allergies, current supplements)
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "age_band",
     section: "safety",
@@ -71,6 +79,27 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "yes", label: "Yes" },
       { value: "no", label: "No" },
       { value: "not_sure", label: "Not sure" },
+    ],
+  },
+  {
+    id: "red_flag_symptoms",
+    section: "safety",
+    title: "Are you currently experiencing any of the following?",
+    description:
+      "These can indicate conditions that need a clinical work-up before any supplement plan. If anything below applies, the most important next step is to speak with a doctor — not to add or change supplements. Pick all that apply, or 'None of the above'.",
+    maxSelections: 9,
+    required: true,
+    options: [
+      { value: "rf_chest_pain", label: "New or worsening chest pain or pressure, or pain that radiates to the arm or jaw" },
+      { value: "rf_blood_in_stool", label: "Blood in stool, black/tarry stool, or a recent change in bowel habit" },
+      { value: "rf_blood_in_urine", label: "Blood in urine" },
+      { value: "rf_unintentional_weight_loss", label: "Unintentional weight loss of 5% or more in the last 6 months" },
+      { value: "rf_suicidal_thoughts", label: "Thoughts of harming myself or that life isn't worth living" },
+      { value: "rf_severe_persistent_headache", label: "A severe or persistent new headache, or 'worst headache of my life'" },
+      { value: "rf_neurological_symptoms", label: "Sudden weakness, numbness, vision change, slurred speech, or balance loss" },
+      { value: "rf_breast_lump", label: "A new breast lump or breast change" },
+      { value: "rf_persistent_fever", label: "Fever lasting more than 3 days without obvious cause" },
+      { value: "no_red_flags", label: "None of these" },
     ],
   },
   {
@@ -164,87 +193,6 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
-    id: "kidney_history",
-    section: "safety",
-    title: "Have you ever been told you have kidney disease or reduced kidney function?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-      { value: "not_sure", label: "Not sure" },
-    ],
-  },
-  {
-    id: "liver_history",
-    section: "safety",
-    title: "Have you ever been told you have liver disease or abnormal liver function?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-      { value: "not_sure", label: "Not sure" },
-    ],
-  },
-  {
-    id: "thyroid_disorder",
-    section: "safety",
-    title: "Do you have a thyroid disorder?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-      { value: "not_sure", label: "Not sure" },
-    ],
-  },
-  {
-    id: "autoimmune_condition",
-    section: "safety",
-    title: "Do you have an autoimmune condition?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-      { value: "not_sure", label: "Not sure" },
-    ],
-  },
-  {
-    id: "kidney_stones",
-    section: "safety",
-    title: "Do you have a history of kidney stones?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-      { value: "not_sure", label: "Not sure" },
-    ],
-  },
-  {
-    id: "red_flag_symptoms",
-    section: "safety",
-    title: "Are you currently experiencing any of the following?",
-    description:
-      "These can indicate conditions that need a clinical work-up before any supplement plan. If anything below applies, the most important next step is to speak with a doctor — not to add or change supplements. Pick all that apply, or 'None of the above'.",
-    maxSelections: 9,
-    required: true,
-    options: [
-      { value: "rf_chest_pain", label: "New or worsening chest pain or pressure, or pain that radiates to the arm or jaw" },
-      { value: "rf_blood_in_stool", label: "Blood in stool, black/tarry stool, or a recent change in bowel habit" },
-      { value: "rf_blood_in_urine", label: "Blood in urine" },
-      { value: "rf_unintentional_weight_loss", label: "Unintentional weight loss of 5% or more in the last 6 months" },
-      { value: "rf_suicidal_thoughts", label: "Thoughts of harming myself or that life isn't worth living" },
-      { value: "rf_severe_persistent_headache", label: "A severe or persistent new headache, or 'worst headache of my life'" },
-      { value: "rf_neurological_symptoms", label: "Sudden weakness, numbness, vision change, slurred speech, or balance loss" },
-      { value: "rf_breast_lump", label: "A new breast lump or breast change" },
-      { value: "rf_persistent_fever", label: "Fever lasting more than 3 days without obvious cause" },
-      { value: "no_red_flags", label: "None of these" },
-    ],
-  },
-  {
     id: "ssri_or_serotonergic_use",
     section: "safety",
     title: "Do you take an antidepressant, anti-anxiety, or migraine medication?",
@@ -289,45 +237,20 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
-    id: "blood_pressure_status",
+    id: "condition_history",
     section: "safety",
-    title: "What's your current blood pressure picture?",
+    title: "Have you ever been told you have any of these conditions?",
     description:
-      "Affects which supplements can interact with antihypertensives, and which lifestyle interventions get prioritized.",
-    maxSelections: 1,
-    required: false,
+      "Pick all that apply, or 'None of these'. Each one shapes which supplements are safe and which lab tests we'd suggest discussing.",
+    maxSelections: 6,
+    required: true,
     options: [
-      { value: "bp_unknown", label: "I don't know my blood pressure" },
-      { value: "bp_normal", label: "Normal" },
-      { value: "bp_borderline", label: "Borderline / pre-hypertension" },
-      { value: "bp_high_treated", label: "High, treated with medication" },
-      { value: "bp_high_untreated", label: "High, not currently treated" },
-    ],
-  },
-  {
-    id: "glucose_status",
-    section: "labs",
-    title: "If you have recent fasting glucose or HbA1c results, what did they show?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "none", label: "No recent test" },
-      { value: "normal", label: "Normal" },
-      { value: "borderline_low", label: "Borderline / pre-diabetic" },
-      { value: "high", label: "Diabetic range" },
-    ],
-  },
-  {
-    id: "lipid_status",
-    section: "labs",
-    title: "If you have recent total or LDL cholesterol results, what did they show?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "none", label: "No recent test" },
-      { value: "normal", label: "Normal" },
-      { value: "borderline_low", label: "Borderline" },
-      { value: "high", label: "High" },
+      { value: "cond_kidney_disease", label: "Kidney disease or reduced kidney function" },
+      { value: "cond_liver_disease", label: "Liver disease or abnormal liver function" },
+      { value: "cond_thyroid_disorder", label: "Thyroid disorder" },
+      { value: "cond_autoimmune_condition", label: "Autoimmune condition" },
+      { value: "cond_kidney_stones", label: "Kidney stone history" },
+      { value: "no_medical_conditions", label: "None of these" },
     ],
   },
   {
@@ -373,6 +296,10 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "no_existing_supplements", label: "I'm not taking any supplements" },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: lifestyle  (Lifestyle — diet, drink/smoke/sun, movement)
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "diet_pattern",
     section: "lifestyle",
@@ -452,79 +379,6 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
-    id: "sun_exposure",
-    section: "lifestyle",
-    title: "How much regular midday sun exposure do you usually get?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "none_or_low", label: "Very little" },
-      { value: "moderate", label: "Some" },
-      { value: "high", label: "A lot" },
-    ],
-  },
-  {
-    id: "alcohol_units_weekly",
-    section: "lifestyle",
-    title: "Roughly how many units of alcohol do you drink per week?",
-    description:
-      "1 UK unit = 8 g pure alcohol ≈ a small (125 ml) glass of wine, half a pint of regular-strength beer, or a 25 ml spirit. A US \"standard drink\" is 14 g alcohol ≈ 1.75 UK units, so 8 US drinks/week ≈ 14 UK units (the UK low-risk threshold). Convert your US drinks to UK units before answering.",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "alc_zero", label: "I don't drink" },
-      { value: "alc_1_to_7", label: "1 to 7 units" },
-      { value: "alc_8_to_14", label: "8 to 14 units" },
-      { value: "alc_15_to_21", label: "15 to 21 units" },
-      { value: "alc_22_to_35", label: "22 to 35 units" },
-      { value: "alc_35_plus", label: "More than 35 units" },
-    ],
-  },
-  {
-    id: "alcohol_binge_frequency",
-    section: "lifestyle",
-    title: "How often do you have 5+ drinks (men) or 4+ drinks (women) in a single sitting?",
-    description:
-      "Binge episodes drive cardiovascular events, AFib, and injury risk independently of weekly total.",
-    maxSelections: 1,
-    required: false,
-    showWhen: [{ questionId: "alcohol_units_weekly", excludes: ["alc_zero"] }],
-    options: [
-      { value: "binge_never", label: "Never" },
-      { value: "binge_monthly", label: "Monthly or less" },
-      { value: "binge_weekly", label: "About weekly" },
-      { value: "binge_multiple_weekly", label: "Multiple times per week" },
-    ],
-  },
-  {
-    id: "tobacco_use",
-    section: "lifestyle",
-    title: "Tobacco / cigarette use?",
-    description:
-      "Smoking history affects supplement safety (e.g. beta-carotene is contraindicated in current and recent smokers) and shifts vitamin C and antioxidant requirements.",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "smoking_never", label: "Never smoked" },
-      { value: "smoking_former_remote", label: "Former smoker (quit more than 10 years ago)" },
-      { value: "smoking_former_recent", label: "Former smoker (quit within 10 years)" },
-      { value: "smoking_current_light", label: "Current smoker, less than 10 / day" },
-      { value: "smoking_current_heavy", label: "Current smoker, 10 or more / day" },
-    ],
-  },
-  {
-    id: "vaping_use",
-    section: "lifestyle",
-    title: "Do you vape or use e-cigarettes?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "vaping_no", label: "No" },
-      { value: "vaping_occasional", label: "Occasionally" },
-      { value: "vaping_daily", label: "Daily" },
-    ],
-  },
-  {
     id: "fruit_veg_servings",
     section: "lifestyle",
     title: "How many servings of fruit and vegetables do you eat on a typical day?",
@@ -600,23 +454,195 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
-    id: "water_intake",
-    section: "holistic",
-    title: "About how much water do you drink per day?",
-    description: "Rough guess is fine. Coffee and tea count toward hydration.",
+    id: "alcohol_units_weekly",
+    section: "lifestyle",
+    title: "Roughly how many units of alcohol do you drink per week?",
+    description:
+      "1 UK unit = 8 g pure alcohol ≈ a small (125 ml) glass of wine, half a pint of regular-strength beer, or a 25 ml spirit. A US \"standard drink\" is 14 g alcohol ≈ 1.75 UK units, so 8 US drinks/week ≈ 14 UK units (the UK low-risk threshold). Convert your US drinks to UK units before answering.",
+    maxSelections: 1,
+    required: true,
+    options: [
+      { value: "alc_zero", label: "I don't drink" },
+      { value: "alc_1_to_7", label: "1 to 7 units" },
+      { value: "alc_8_to_14", label: "8 to 14 units" },
+      { value: "alc_15_to_21", label: "15 to 21 units" },
+      { value: "alc_22_to_35", label: "22 to 35 units" },
+      { value: "alc_35_plus", label: "More than 35 units" },
+    ],
+  },
+  {
+    id: "alcohol_binge_frequency",
+    section: "lifestyle",
+    title: "How often do you have 5+ drinks (men) or 4+ drinks (women) in a single sitting?",
+    description:
+      "Binge episodes drive cardiovascular events, AFib, and injury risk independently of weekly total.",
+    maxSelections: 1,
+    required: false,
+    showWhen: [{ questionId: "alcohol_units_weekly", excludes: ["alc_zero"] }],
+    options: [
+      { value: "binge_never", label: "Never" },
+      { value: "binge_monthly", label: "Monthly or less" },
+      { value: "binge_weekly", label: "About weekly" },
+      { value: "binge_multiple_weekly", label: "Multiple times per week" },
+    ],
+  },
+  {
+    id: "tobacco_use",
+    section: "lifestyle",
+    title: "Tobacco / cigarette use?",
+    description:
+      "Smoking history affects supplement safety (e.g. beta-carotene is contraindicated in current and recent smokers) and shifts vitamin C and antioxidant requirements.",
+    maxSelections: 1,
+    required: true,
+    options: [
+      { value: "smoking_never", label: "Never smoked" },
+      { value: "smoking_former_remote", label: "Former smoker (quit more than 10 years ago)" },
+      { value: "smoking_former_recent", label: "Former smoker (quit within 10 years)" },
+      { value: "smoking_current_light", label: "Current smoker, less than 10 / day" },
+      { value: "smoking_current_heavy", label: "Current smoker, 10 or more / day" },
+    ],
+  },
+  {
+    id: "vaping_use",
+    section: "lifestyle",
+    title: "Do you vape or use e-cigarettes?",
     maxSelections: 1,
     required: false,
     options: [
-      { value: "lt_1l", label: "Less than 1 litre" },
-      { value: "1_to_2l", label: "1 to 2 litres" },
-      { value: "2_to_3l", label: "2 to 3 litres" },
-      { value: "gt_3l", label: "More than 3 litres" },
+      { value: "vaping_no", label: "No" },
+      { value: "vaping_occasional", label: "Occasionally" },
+      { value: "vaping_daily", label: "Daily" },
     ],
   },
+  {
+    id: "sun_exposure",
+    section: "lifestyle",
+    title: "How much skin-on-sun time do you typically get between 10am and 3pm?",
+    description:
+      "Rough average across the year. Through-window sun, sunscreen, and full-cover clothing don't count — we're asking because direct midday sun is the main way your body makes vitamin D.",
+    maxSelections: 1,
+    required: true,
+    options: [
+      {
+        value: "none_or_low",
+        label: "Very little",
+        description: "Mostly indoors during midday, or fully covered / sunscreened when outside.",
+      },
+      {
+        value: "moderate",
+        label: "Some",
+        description: "A few short midday outings a week with arms or legs uncovered (walks, lunch breaks, errands).",
+      },
+      {
+        value: "high",
+        label: "A lot",
+        description: "Outdoors most days around midday with skin exposed — outdoor work, training, or sunny climate living.",
+      },
+    ],
+  },
+  {
+    id: "exercise_pattern",
+    section: "lifestyle",
+    title: "Which activity pattern fits you best?",
+    description:
+      "Pick the one that describes most of your training time. We use this to tune protein, creatine, and recovery suggestions.",
+    maxSelections: 1,
+    required: true,
+    options: [
+      {
+        value: "strength_power",
+        label: "Strength or power training",
+        description: "Mostly lifting, resistance work, or sprint/explosive sessions.",
+      },
+      {
+        value: "endurance",
+        label: "Endurance training",
+        description: "Mostly running, cycling, swimming, rowing, or long cardio sessions.",
+      },
+      {
+        value: "mixed_training",
+        label: "Mixed training",
+        description: "A roughly even blend of strength and cardio (e.g. CrossFit, hybrid programmes, sport practice).",
+      },
+      {
+        value: "light_activity",
+        label: "Light activity",
+        description: "Walking, yoga, gentle cycling, gardening — moving daily but not formal training.",
+      },
+      {
+        value: "mostly_sedentary",
+        label: "Mostly sedentary",
+        description: "Little structured activity; mostly seated through the day.",
+      },
+    ],
+  },
+  {
+    id: "cardio_minutes_weekly",
+    section: "lifestyle",
+    title: "Roughly, how many minutes of cardio do you do per week?",
+    description: "Anything that gets your heart rate up — walking briskly, cycling, swimming, jogging.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "lt_60_min", label: "Less than 60 minutes" },
+      { value: "60_to_150_min", label: "60 to 150 minutes" },
+      { value: "150_to_300_min", label: "150 to 300 minutes" },
+      { value: "gt_300_min", label: "More than 300 minutes" },
+    ],
+  },
+  {
+    id: "strength_sessions_weekly",
+    section: "lifestyle",
+    title: "How many strength training sessions per week?",
+    description:
+      "A session means roughly 20+ minutes of resistance work that challenges your muscles — free weights, machines, resistance bands, or bodyweight exercises like push-ups, squats, lunges, or pull-ups. Light walking, stretching, and cardio don't count.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "zero_strength", label: "None" },
+      { value: "one_strength", label: "1 session" },
+      { value: "two_three_strength", label: "2 to 3 sessions" },
+      { value: "four_plus_strength", label: "4 or more sessions" },
+    ],
+  },
+  {
+    id: "daily_steps",
+    section: "lifestyle",
+    title: "Daily steps on a typical day?",
+    description: "Best guess if you don't track them.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "lt_5k", label: "Less than 5,000" },
+      { value: "5k_to_8k", label: "5,000 to 8,000" },
+      { value: "8k_to_12k", label: "8,000 to 12,000" },
+      { value: "gt_12k", label: "More than 12,000" },
+    ],
+  },
+  {
+    id: "sitting_hours",
+    section: "lifestyle",
+    title: "On a typical day, how many hours do you spend sitting?",
+    description: "Includes desk, car, sofa — anything where you're sitting still.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "lt_4h", label: "Less than 4 hours" },
+      { value: "4_to_8h", label: "4 to 8 hours" },
+      { value: "8_to_12h", label: "8 to 12 hours" },
+      { value: "gt_12h", label: "More than 12 hours" },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: holistic  (Mind & body — sleep, stress, mind, weight,
+  //                      women's health, water)
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "sleep_hours",
     section: "holistic",
     title: "On a typical night, how many hours do you sleep?",
+    description: "Actual sleep, not time in bed. Best estimate is fine.",
     maxSelections: 1,
     required: false,
     options: [
@@ -627,17 +653,161 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
-    id: "sitting_hours",
+    id: "bedtime_consistency",
     section: "holistic",
-    title: "On a typical day, how many hours do you spend sitting?",
-    description: "Includes desk, car, sofa — anything where you're sitting still.",
+    title: "How consistent is your bedtime?",
+    description: "Roughly how often you go to bed at the same time night to night.",
     maxSelections: 1,
     required: false,
     options: [
-      { value: "lt_4h", label: "Less than 4 hours" },
-      { value: "4_to_8h", label: "4 to 8 hours" },
-      { value: "8_to_12h", label: "8 to 12 hours" },
-      { value: "gt_12h", label: "More than 12 hours" },
+      { value: "very_consistent", label: "Within 30 minutes most nights" },
+      { value: "mostly_consistent", label: "Within an hour most nights" },
+      { value: "irregular", label: "Varies widely" },
+    ],
+  },
+  {
+    id: "awakenings",
+    section: "holistic",
+    title: "Do you wake during the night?",
+    description: "Brief stirring is normal. We're asking about waking up enough to notice.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "no_awakenings", label: "Rarely / sleep through" },
+      { value: "occasional_awakenings", label: "Occasionally" },
+      { value: "frequent_awakenings", label: "Most nights, several times" },
+    ],
+  },
+  {
+    id: "snoring_pattern",
+    section: "holistic",
+    title: "Do you snore loudly, or have you been told you stop breathing in your sleep?",
+    description: "Loud snoring or witnessed pauses can indicate sleep apnea — supplements aren't the answer here.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "no_snoring", label: "No / quiet" },
+      { value: "occasional_snoring", label: "Occasional snoring" },
+      { value: "loud_snoring_or_apnea", label: "Loud snoring or witnessed pauses" },
+    ],
+  },
+  {
+    id: "caffeine_cutoff",
+    section: "holistic",
+    title: "When do you have your last caffeine of the day?",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "no_caffeine", label: "I don't have caffeine" },
+      { value: "before_noon", label: "Before noon" },
+      { value: "noon_to_3pm", label: "Noon to 3pm" },
+      { value: "after_3pm", label: "After 3pm" },
+    ],
+  },
+  {
+    id: "shift_schedule_type",
+    section: "holistic",
+    title: "Do you work shifts?",
+    description:
+      "Shift work changes which sleep, light, caffeine and supplement strategies actually work. Even rough answers help us tailor the plan.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "shift_none", label: "No — standard daytime hours" },
+      { value: "fixed_days", label: "Yes — fixed daytime shifts" },
+      { value: "fixed_nights", label: "Yes — fixed night shifts" },
+      { value: "rotating_forward", label: "Yes — rotating, forward (days → evenings → nights)" },
+      { value: "rotating_backward", label: "Yes — rotating, backward (nights → evenings → days)" },
+      { value: "irregular_oncall", label: "Yes — irregular or on-call" },
+    ],
+  },
+  {
+    id: "shift_start_time",
+    section: "holistic",
+    title: "When does a typical night/evening shift start?",
+    description: "Roughly — pick the closest band.",
+    maxSelections: 1,
+    required: false,
+    showWhen: [
+      {
+        questionId: "shift_schedule_type",
+        includes: ["fixed_nights", "rotating_forward", "rotating_backward", "irregular_oncall"],
+      },
+    ],
+    options: [
+      { value: "shift_start_before_18", label: "Before 6pm" },
+      { value: "shift_start_18_to_21", label: "6pm – 9pm" },
+      { value: "shift_start_21_to_00", label: "9pm – midnight" },
+      { value: "shift_start_00_to_03", label: "Midnight – 3am" },
+    ],
+  },
+  {
+    id: "shift_length_hours",
+    section: "holistic",
+    title: "How long is a typical shift?",
+    maxSelections: 1,
+    required: false,
+    showWhen: [
+      {
+        questionId: "shift_schedule_type",
+        excludes: ["shift_none"],
+      },
+    ],
+    options: [
+      { value: "shift_8h", label: "About 8 hours" },
+      { value: "shift_10h", label: "About 10 hours" },
+      { value: "shift_12h", label: "About 12 hours" },
+      { value: "shift_other_length", label: "Something else / varies" },
+    ],
+  },
+  {
+    id: "rotation_cadence",
+    section: "holistic",
+    title: "How often do your shifts rotate?",
+    maxSelections: 1,
+    required: false,
+    showWhen: [
+      {
+        questionId: "shift_schedule_type",
+        includes: ["rotating_forward", "rotating_backward"],
+      },
+    ],
+    options: [
+      { value: "rotation_weekly", label: "Weekly" },
+      { value: "rotation_2_weeks", label: "Every two weeks" },
+      { value: "rotation_monthly", label: "Monthly" },
+      { value: "rotation_irregular", label: "Irregular" },
+    ],
+  },
+  {
+    id: "sleep_quality",
+    section: "holistic",
+    title: "How would you rate your sleep lately?",
+    maxSelections: 1,
+    required: true,
+    showWhen: [
+      { questionId: "primary_goal", includes: ["sleep", "energy", "stress"] },
+    ],
+    options: [
+      { value: "poor", label: "Poor" },
+      { value: "fair", label: "Fair" },
+      { value: "good", label: "Good" },
+      { value: "very_good", label: "Very good" },
+    ],
+  },
+  {
+    id: "stress_load",
+    section: "holistic",
+    title: "How would you rate your stress load lately?",
+    maxSelections: 1,
+    required: true,
+    showWhen: [
+      { questionId: "primary_goal", includes: ["stress", "sleep", "energy"] },
+    ],
+    options: [
+      { value: "none_or_low", label: "Low" },
+      { value: "moderate", label: "Moderate" },
+      { value: "high", label: "High" },
     ],
   },
   {
@@ -680,6 +850,20 @@ export const questionnaire: QuestionDefinition[] = [
     ],
   },
   {
+    id: "water_intake",
+    section: "holistic",
+    title: "About how much water do you drink per day?",
+    description: "Rough guess is fine. Coffee and tea count toward hydration.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "lt_1l", label: "Less than 1 litre" },
+      { value: "1_to_2l", label: "1 to 2 litres" },
+      { value: "2_to_3l", label: "2 to 3 litres" },
+      { value: "gt_3l", label: "More than 3 litres" },
+    ],
+  },
+  {
     id: "weight_band",
     section: "holistic",
     title: "Roughly, what's your weight category?",
@@ -703,97 +887,6 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "lost_weight", label: "Lost weight" },
       { value: "stable_weight", label: "Roughly stable" },
       { value: "gained_weight", label: "Gained weight" },
-    ],
-  },
-  {
-    id: "cardio_minutes_weekly",
-    section: "holistic",
-    title: "Roughly, how many minutes of cardio do you do per week?",
-    description: "Anything that gets your heart rate up — walking briskly, cycling, swimming, jogging.",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "lt_60_min", label: "Less than 60 minutes" },
-      { value: "60_to_150_min", label: "60 to 150 minutes" },
-      { value: "150_to_300_min", label: "150 to 300 minutes" },
-      { value: "gt_300_min", label: "More than 300 minutes" },
-    ],
-  },
-  {
-    id: "strength_sessions_weekly",
-    section: "holistic",
-    title: "How many strength training sessions per week?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "zero_strength", label: "None" },
-      { value: "one_strength", label: "1 session" },
-      { value: "two_three_strength", label: "2 to 3 sessions" },
-      { value: "four_plus_strength", label: "4 or more sessions" },
-    ],
-  },
-  {
-    id: "daily_steps",
-    section: "holistic",
-    title: "Daily steps on a typical day?",
-    description: "Best guess if you don't track them.",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "lt_5k", label: "Less than 5,000" },
-      { value: "5k_to_8k", label: "5,000 to 8,000" },
-      { value: "8k_to_12k", label: "8,000 to 12,000" },
-      { value: "gt_12k", label: "More than 12,000" },
-    ],
-  },
-  {
-    id: "bedtime_consistency",
-    section: "holistic",
-    title: "How consistent is your bedtime?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "very_consistent", label: "Within 30 minutes most nights" },
-      { value: "mostly_consistent", label: "Within an hour most nights" },
-      { value: "irregular", label: "Varies widely" },
-    ],
-  },
-  {
-    id: "awakenings",
-    section: "holistic",
-    title: "Do you wake during the night?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "no_awakenings", label: "Rarely / sleep through" },
-      { value: "occasional_awakenings", label: "Occasionally" },
-      { value: "frequent_awakenings", label: "Most nights, several times" },
-    ],
-  },
-  {
-    id: "snoring_pattern",
-    section: "holistic",
-    title: "Do you snore loudly, or have you been told you stop breathing in your sleep?",
-    description: "Loud snoring or witnessed pauses can indicate sleep apnea — supplements aren't the answer here.",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "no_snoring", label: "No / quiet" },
-      { value: "occasional_snoring", label: "Occasional snoring" },
-      { value: "loud_snoring_or_apnea", label: "Loud snoring or witnessed pauses" },
-    ],
-  },
-  {
-    id: "caffeine_cutoff",
-    section: "holistic",
-    title: "When do you have your last caffeine of the day?",
-    maxSelections: 1,
-    required: false,
-    options: [
-      { value: "no_caffeine", label: "I don't have caffeine" },
-      { value: "before_noon", label: "Before noon" },
-      { value: "noon_to_3pm", label: "Noon to 3pm" },
-      { value: "after_3pm", label: "After 3pm" },
     ],
   },
   {
@@ -862,55 +955,16 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "non_hormonal", label: "Non-hormonal (copper IUD, barrier, etc.)" },
     ],
   },
-  {
-    id: "sleep_quality",
-    section: "lifestyle",
-    title: "How would you rate your sleep lately?",
-    maxSelections: 1,
-    required: true,
-    showWhen: [
-      { questionId: "primary_goal", includes: ["sleep", "energy", "stress"] },
-    ],
-    options: [
-      { value: "poor", label: "Poor" },
-      { value: "fair", label: "Fair" },
-      { value: "good", label: "Good" },
-      { value: "very_good", label: "Very good" },
-    ],
-  },
-  {
-    id: "stress_load",
-    section: "lifestyle",
-    title: "How would you rate your stress load lately?",
-    maxSelections: 1,
-    required: true,
-    showWhen: [
-      { questionId: "primary_goal", includes: ["stress", "sleep", "energy"] },
-    ],
-    options: [
-      { value: "none_or_low", label: "Low" },
-      { value: "moderate", label: "Moderate" },
-      { value: "high", label: "High" },
-    ],
-  },
-  {
-    id: "exercise_pattern",
-    section: "lifestyle",
-    title: "Which activity pattern fits you best?",
-    maxSelections: 1,
-    required: true,
-    options: [
-      { value: "strength_power", label: "Strength or power training" },
-      { value: "endurance", label: "Endurance training" },
-      { value: "mixed_training", label: "Mixed training" },
-      { value: "light_activity", label: "Light activity" },
-      { value: "mostly_sedentary", label: "Mostly sedentary" },
-    ],
-  },
-  // The next five questions are required *if visible*. Visibility is gated by
-  // showWhen on primary_goal; getVisibleQuestions() runs the showWhen filter
-  // before any required check, so a user whose primary_goal does not match
-  // never sees these questions and is not blocked by the required flag.
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: symptoms
+  //
+  // The next several questions are required *if visible*. Visibility
+  // is gated by showWhen on primary_goal; getVisibleQuestions() runs
+  // the showWhen filter before any required check, so a user whose
+  // primary_goal does not match never sees these questions and is
+  // not blocked by the required flag.
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "sleep_issue",
     section: "symptoms",
@@ -1049,6 +1103,10 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "frequent_migraine", label: "Frequently (4+ per month)" },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: body_signs
+  // ─────────────────────────────────────────────────────────────────
   {
     id: "nail_signs",
     section: "body_signs",
@@ -1130,6 +1188,52 @@ export const questionnaire: QuestionDefinition[] = [
       { value: "frequent_infections", label: "Catch every cold going around, or slow to recover from them" },
       { value: "poor_night_vision", label: "Difficulty seeing well in low light or at night" },
       { value: "no_other_signs", label: "None of these" },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────
+  // Section: labs  (Recent test results — optional)
+  // ─────────────────────────────────────────────────────────────────
+  {
+    id: "blood_pressure_status",
+    section: "labs",
+    title: "What's your current blood pressure picture?",
+    description:
+      "Affects which supplements can interact with antihypertensives, and which lifestyle interventions get prioritized.",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "bp_unknown", label: "I don't know my blood pressure" },
+      { value: "bp_normal", label: "Normal" },
+      { value: "bp_borderline", label: "Borderline / pre-hypertension" },
+      { value: "bp_high_treated", label: "High, treated with medication" },
+      { value: "bp_high_untreated", label: "High, not currently treated" },
+    ],
+  },
+  {
+    id: "glucose_status",
+    section: "labs",
+    title: "If you have recent fasting glucose or HbA1c results, what did they show?",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "none", label: "No recent test" },
+      { value: "normal", label: "Normal" },
+      { value: "borderline_low", label: "Borderline / pre-diabetic" },
+      { value: "high", label: "Diabetic range" },
+    ],
+  },
+  {
+    id: "lipid_status",
+    section: "labs",
+    title: "If you have recent total or LDL cholesterol results, what did they show?",
+    maxSelections: 1,
+    required: false,
+    options: [
+      { value: "none", label: "No recent test" },
+      { value: "normal", label: "Normal" },
+      { value: "borderline_low", label: "Borderline" },
+      { value: "high", label: "High" },
     ],
   },
   {

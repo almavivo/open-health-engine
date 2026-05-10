@@ -378,10 +378,23 @@ maintainers in advance.
 ├── src/
 │   ├── index.ts                    Public API surface
 │   ├── types.ts                    Type system, RiskFlag union, EvidenceReference
-│   ├── questionnaire.ts            74 health/lifestyle questions
+│   ├── questionnaire.ts            Health/lifestyle questions
 │   ├── rules-engine.ts             Scoring, risk-flag collection, plan assembly
-│   ├── supplements.ts              122 supplement rules + EXCLUDED_SUPPLEMENTS
-│   ├── lab-recommendations.ts      Lab engine + EXCLUDED_TESTS
+│   ├── supplements.ts              Supplement rules + EXCLUDED_SUPPLEMENTS
+│   ├── lab-recommendations.ts      Lab engine + EXCLUDED_TESTS (incl. discuss tier)
+│   ├── lab-markers.ts              Marker definitions, units, reference ranges
+│   ├── lab-overrides.ts            Apply user-supplied numeric values
+│   ├── lab-interpreter.ts          Numeric values → bands + flags
+│   ├── physical-prep.ts            Annual physical prep sheet
+│   ├── shift-planner.ts            Shift-pattern circadian planner
+│   ├── medications/                Medication review module
+│   │   ├── catalog.ts              Branded → class lookup
+│   │   ├── classes.ts              Class abstractions + named guideline sources
+│   │   ├── rules.ts                Review-prompt rules (NICE/Beers/STOPP/ATA/BNF)
+│   │   ├── symptoms.ts             Symptom + context flag definitions
+│   │   ├── build-sheet.ts          Sheet assembly from intake
+│   │   ├── types.ts                Module types
+│   │   └── index.ts                Module surface
 │   ├── derive-nutrient-signals.ts  Confounder-aware deficiency derivation
 │   └── derive-profile.ts           Cognitive / stress / circadian / aspiration profiles
 ├── tests/

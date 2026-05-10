@@ -61,6 +61,7 @@ export type QuestionId =
   | "thyroid_disorder"
   | "autoimmune_condition"
   | "kidney_stones"
+  | "condition_history"
   // Red-flag screen
   | "red_flag_symptoms"
   | "diet_pattern"
@@ -110,6 +111,10 @@ export type QuestionId =
   | "awakenings"
   | "snoring_pattern"
   | "caffeine_cutoff"
+  | "shift_schedule_type"
+  | "shift_start_time"
+  | "shift_length_hours"
+  | "rotation_cadence"
   | "cycle_pattern"
   | "pms_pattern"
   | "perimenopause_symptoms"
@@ -274,6 +279,28 @@ export type QuestionOptionValue =
   | "noon_to_3pm"
   | "after_3pm"
   | "no_caffeine"
+  // Shift-work schedule types (lifestyle)
+  | "shift_none"
+  | "fixed_days"
+  | "fixed_nights"
+  | "rotating_forward"
+  | "rotating_backward"
+  | "irregular_oncall"
+  // Shift start-time bands
+  | "shift_start_before_18"
+  | "shift_start_18_to_21"
+  | "shift_start_21_to_00"
+  | "shift_start_00_to_03"
+  // Shift length
+  | "shift_8h"
+  | "shift_10h"
+  | "shift_12h"
+  | "shift_other_length"
+  // Rotation cadence
+  | "rotation_weekly"
+  | "rotation_2_weeks"
+  | "rotation_monthly"
+  | "rotation_irregular"
   | "regular_cycle"
   | "irregular_cycle"
   | "no_cycle"
@@ -374,6 +401,13 @@ export type QuestionOptionValue =
   | "allergy_dairy"
   | "allergy_egg"
   | "no_known_allergies"
+  // Medical condition history (multi-select replacing five separate yes/no questions)
+  | "cond_kidney_disease"
+  | "cond_liver_disease"
+  | "cond_thyroid_disorder"
+  | "cond_autoimmune_condition"
+  | "cond_kidney_stones"
+  | "no_medical_conditions"
   // Smoking (replaces alcohol_frequency in spirit; tobacco gets richer detail)
   | "smoking_never"
   | "smoking_former_remote"        // quit >10 years
@@ -602,6 +636,12 @@ export interface SupplementRule {
   optionalIf?: Condition[];
   excludeIf?: Condition[];
   clinicianReviewIf?: Condition[];
+  // Soft flags. These do NOT exclude — they stamp a marker on the
+  // SupplementScore so the UI can show "you're already taking this"
+  // (single-supp overlap) or "your multivitamin may cover this"
+  // (overlap via a generic multivitamin tick).
+  alreadyTakingIf?: Condition[];
+  coveredByMultiIf?: Condition[];
   sameWindowConflicts?: string[];
   stackConflicts?: string[];
 }
@@ -630,6 +670,9 @@ export interface SupplementScore {
   personalRelevance: PersonalRelevance[];
   whyNotPrimary: WhyNotPrimary[];
   qualityRequirements: QualityRequirements;
+  // Soft flags surfaced in the UI rather than gating recommendation.
+  alreadyTaking: boolean;
+  coveredByMulti: boolean;
 }
 
 export interface BaselineNudge {
@@ -674,6 +717,10 @@ export interface DailyPlanItem {
   title: string;
   action: string;
   source: "lifestyle" | "supplement";
+  // Surfaced when source === "supplement" and the user reported they're
+  // already taking it in the existing-supplements intake question.
+  alreadyTaking?: boolean;
+  coveredByMulti?: boolean;
 }
 
 export interface DerivedProfileSummary {
@@ -698,10 +745,12 @@ export interface DerivedProfileSummary {
 // Tier maps directly to UI prominence:
 //   strongly_recommended — high pre-test probability, standard of care
 //   recommended          — defensible in context, mainstream
+//   discuss              — guidelines don't back a routine order; raise as a
+//                          topic with a clinician based on context / risk factors
 //   optional             — defensible but specialist-leaning / advanced
 // ---------------------------------------------------------------------------
 
-export type LabTier = "strongly_recommended" | "recommended" | "optional";
+export type LabTier = "strongly_recommended" | "recommended" | "discuss" | "optional";
 
 export type LabDomain =
   | "anemia_iron"
@@ -762,4 +811,5 @@ export interface RecommendationPlan {
   dailyPlan: DailyPlanItem[];
   profiles: DerivedProfileSummary[];
   labRecommendations: LabRecommendation[];
+  shiftPlan: import("./shift-planner").ShiftPlan | null;
 }

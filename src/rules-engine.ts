@@ -1,7 +1,9 @@
 import { deriveProfiles } from "./derive-profile";
 import { withDerivedSignals } from "./derive-nutrient-signals";
+import { applyLabOverrides } from "./lab-overrides";
 import { deriveLabRecommendations } from "./lab-recommendations";
 import { questionnaire } from "./questionnaire";
+import { deriveShiftPlan, isShiftWorker } from "./shift-planner";
 import { supplementCatalog } from "./supplements";
 import {
   AnswerMap,
@@ -382,6 +384,9 @@ function scoreSupplement(rule: SupplementRule, answers: AnswerMap): SupplementSc
   let status: RecommendationStatus = "do_not_recommend";
   let score = rule.baseScore;
 
+  const alreadyTaking = matchesAny(rule.alreadyTakingIf, answers);
+  const coveredByMulti = matchesAny(rule.coveredByMultiIf, answers);
+
   const baseScore: SupplementScore = {
     supplementId: rule.id,
     supplementSlug: rule.slug,
@@ -400,6 +405,8 @@ function scoreSupplement(rule: SupplementRule, answers: AnswerMap): SupplementSc
     personalRelevance,
     whyNotPrimary: rule.whyNotPrimary ?? [],
     qualityRequirements: rule.qualityRequirements,
+    alreadyTaking,
+    coveredByMulti,
   };
 
   if (matchesAny(rule.excludeIf, answers)) {
@@ -1395,12 +1402,23 @@ function buildDailyPlan(
   }
 
   if (schedule.morning.length > 0) {
+    const annotated = schedule.morning
+      .map((item) =>
+        item.alreadyTaking
+          ? `${item.name} (already taking — check your dose against the recommendation)`
+          : item.coveredByMulti
+            ? `${item.name} (your multivitamin may cover this — check the label)`
+            : item.name,
+      )
+      .join(", ");
+    const anyAlready = schedule.morning.some((s) => s.alreadyTaking || s.coveredByMulti);
     plan.push({
       id: "morning-supplements",
       window: "morning",
       title: "Morning supplement pack",
-      action: `Take ${schedule.morning.map((item) => item.name).join(", ")} as directed, ideally with the timing notes shown in your stack.`,
+      action: `Take ${annotated} as directed, ideally with the timing notes shown in your stack.`,
       source: "supplement",
+      alreadyTaking: anyAlready,
     });
   }
 
@@ -1425,12 +1443,23 @@ function buildDailyPlan(
   }
 
   if (schedule.evening.length > 0) {
+    const annotated = schedule.evening
+      .map((item) =>
+        item.alreadyTaking
+          ? `${item.name} (already taking — check your dose against the recommendation)`
+          : item.coveredByMulti
+            ? `${item.name} (your multivitamin may cover this — check the label)`
+            : item.name,
+      )
+      .join(", ");
+    const anyAlready = schedule.evening.some((s) => s.alreadyTaking || s.coveredByMulti);
     plan.push({
       id: "evening-supplements",
       window: "evening",
       title: "Evening supplement pack",
-      action: `Take ${schedule.evening.map((item) => item.name).join(", ")} as directed, keeping sedating or recovery-oriented options in this window.`,
+      action: `Take ${annotated} as directed, keeping sedating or recovery-oriented options in this window.`,
       source: "supplement",
+      alreadyTaking: anyAlready,
     });
   }
 
@@ -1450,11 +1479,21 @@ function buildDailyPlan(
   }));
 }
 
-export function buildRecommendationPlan(rawAnswers: AnswerMap): RecommendationPlan {
+export function buildRecommendationPlan(
+  rawAnswers: AnswerMap,
+  labs?: import("./lab-overrides").LabResultSet | null,
+): RecommendationPlan {
+  // Lab-as-authority: when the user has entered numeric lab values, translate
+  // them into the QuestionOptionValue the existing engine already gates on
+  // (e.g. lab_ferritin_status). Numeric values supersede coarse intake answers.
+  // No supplement rule needs to know about numeric labs.
+  const overridden =
+    labs && labs.values.length > 0 ? applyLabOverrides(rawAnswers, labs) : rawAnswers;
+
   // Compute derived nutrient signals once, then run the engine against the
   // augmented answer map so rules can reference them via the same Condition
   // mechanism as user-supplied answers.
-  const baseAnswers = withDerivedSignals(rawAnswers);
+  const baseAnswers = withDerivedSignals(overridden);
 
   // Daily aspirin or chronic NSAID use carries the same supplement-interaction
   // surface as prescription anticoagulants (additive bleeding risk with omega-3,
@@ -1462,7 +1501,7 @@ export function buildRecommendationPlan(rawAnswers: AnswerMap): RecommendationPl
   // Promote it into the existing blood_thinner_use gate so every rule that
   // already screens for anticoagulants also screens for OTC blood thinners,
   // without duplicating excludeIf clauses across the catalogue.
-  const answers: AnswerMap =
+  const answersAfterAspirin: AnswerMap =
     baseAnswers.daily_aspirin_or_nsaid === "yes" || baseAnswers.daily_aspirin_or_nsaid === "not_sure"
       ? {
           ...baseAnswers,
@@ -1472,6 +1511,25 @@ export function buildRecommendationPlan(rawAnswers: AnswerMap): RecommendationPl
               : "yes",
         }
       : baseAnswers;
+
+  // condition_history is a single multi-select that replaced five separate
+  // yes/no questions (kidney/liver/thyroid/autoimmune/kidney_stones). Synthesise
+  // the legacy IDs so every existing rule in supplements.ts and lab-recommendations.ts
+  // continues to work via the same Condition mechanism — no need to retag 45+
+  // excludeIf clauses across the catalogue.
+  const conditionHistory = String(answersAfterAspirin.condition_history ?? "");
+  const hasCond = (token: string) => conditionHistory.includes(token);
+  const answers: AnswerMap =
+    answersAfterAspirin.condition_history !== undefined
+      ? {
+          ...answersAfterAspirin,
+          kidney_history: hasCond("cond_kidney_disease") ? "yes" : "no",
+          liver_history: hasCond("cond_liver_disease") ? "yes" : "no",
+          thyroid_disorder: hasCond("cond_thyroid_disorder") ? "yes" : "no",
+          autoimmune_condition: hasCond("cond_autoimmune_condition") ? "yes" : "no",
+          kidney_stones: hasCond("cond_kidney_stones") ? "yes" : "no",
+        }
+      : answersAfterAspirin;
 
   const riskFlags = collectRiskFlags(answers);
   const questionsAsked = getQuestionIdsForFlow(answers);
@@ -1574,6 +1632,19 @@ export function buildRecommendationPlan(rawAnswers: AnswerMap): RecommendationPl
   const schedule = buildSchedule(stack);
   const lifestyleInterventions = collectLifestyleInterventions(answers);
 
+  const shiftPlan = deriveShiftPlan(answers);
+  const shiftAwareNudges = collectBaselineNudges(answers);
+  if (isShiftWorker(answers) && !shiftAwareNudges.some((n) => n.id === "shift_worker_anchor")) {
+    shiftAwareNudges.unshift({
+      id: "shift_worker_anchor",
+      title: "Anchor sleep is your highest-leverage move",
+      body:
+        "A consistent 7-hour daytime sleep window — same start and end every workday — is the single most evidence-based intervention for shift workers. The full protocol is on your shift plan.",
+      why:
+        "Most shift-work health risks (cognition, mood, metabolic) track with circadian misalignment, not workload alone. The anchor sleep is what fixes alignment.",
+    });
+  }
+
   return {
     answers,
     riskFlags,
@@ -1584,11 +1655,12 @@ export function buildRecommendationPlan(rawAnswers: AnswerMap): RecommendationPl
     optionalAlternatives,
     excluded,
     schedule,
-    baselineNudges: collectBaselineNudges(answers),
+    baselineNudges: shiftAwareNudges,
     lifestyleInterventions,
     dailyPlan: buildDailyPlan(schedule, lifestyleInterventions),
     profiles: deriveProfiles(answers),
     labRecommendations: deriveLabRecommendations(answers, riskFlags),
+    shiftPlan,
   };
 }
 

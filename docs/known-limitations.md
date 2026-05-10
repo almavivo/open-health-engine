@@ -180,6 +180,37 @@ caught by the blacklist at runtime. A static check that
 asserts no item in `EXCLUDED_TESTS.name` matches a `LabSpec.name`
 is a planned addition.
 
+## 0.2.0 changes worth flagging
+
+The 0.2.0 release adds a `"discuss"` tier to `LabTier`. The signal is
+"guidelines don't back a routine order; raise as a topic with a
+clinician based on context / risk factors." This is additive — existing
+`strongly_recommended` / `recommended` / `optional` consumers continue
+to work. Three rules moved to this tier as part of the safety pass:
+
+- **DEXA in men ≥70** is now `discuss` (USPSTF Grade I — insufficient
+  evidence). Women ≥65 remain `recommended` (USPSTF Grade B).
+- **Vitamin D testing** in healthy adults <75 is now `discuss`. The
+  2024 Endocrine Society guideline advises against routine 25-OH-D
+  testing in this group; targeted indications (pregnancy, suspected
+  malabsorption, CKD, ≥75) keep `recommended`.
+- **CBC + CMP** in asymptomatic adults are now `discuss`. USPSTF has
+  no recommendation either way; UK/NHS practice does not include them
+  in routine asymptomatic adults.
+
+Fall-risk screening copy is now anchored to **CDC STEADI**
+(screen → assess → intervene framework) rather than a misattributed
+USPSTF position.
+
+The medications module's review prompts are now anchored to named
+NICE / ATA / BNF / Beers guidelines (NG196, NG28, CG182, NG136, CG181,
+ATA 2014, BNF prescribing-in-pregnancy) rather than a generic
+"general clinical practice" placeholder.
+
+Safety review for 0.2.0 was performed by the founder (Almavivo).
+A documented gap: external clinical reviewer review is not yet in the
+loop. Planned for 0.3.0.
+
 ## What this engine should never be used for
 
 - Diagnostic decision-making
