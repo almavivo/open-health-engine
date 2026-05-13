@@ -354,12 +354,21 @@ Two contributor paths:
 "good first issue" — many are simple citation updates or
 `lastReviewed` date refreshes. Tests run on every PR.
 
-**I'm a clinician.** You don't need to touch TypeScript. Most of the
-content lives in Markdown sidecar files in `docs/supplements/` and
-`docs/labs/`. The build step syncs Markdown → TypeScript at package
-time. Use the **Clinician Review** PR template — it asks for the
-citation (DOI/PMID), conflict-of-interest disclosure, and
-last-reviewed date.
+**I'm a clinician.** You shouldn't need to read TypeScript to audit a
+rule. Browse [`docs/supplements/`](./docs/supplements/) and
+[`docs/labs/`](./docs/labs/) — every supplement rule and lab marker
+has a plain-English Markdown view showing its indications,
+contraindications, dosing window, evidence citations, and quality
+requirements. Those files are *generated* from the TypeScript catalogs
+(`src/supplements.ts`, `src/lab-markers.ts`) by `npm run docs:generate`
+and re-verified on every PR, so they cannot silently drift from the
+rules the engine actually runs.
+
+To suggest a change, open an issue or a PR against the TypeScript
+source. The repository ships a **Clinician Review** PR template that
+asks for citation (DOI/PMID), conflict-of-interest disclosure, and
+last-reviewed date — a maintainer will regenerate the Markdown on
+merge.
 
 Every merged contribution earns a credit line in
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) with name, credential, and
@@ -405,7 +414,11 @@ maintainers in advance.
 ├── docs/
 │   ├── evidence-framework.md       Tier A/B/C/D criteria, status caps
 │   ├── exclusions.md               EXCLUDED_TESTS + EXCLUDED_SUPPLEMENTS in prose
-│   └── known-limitations.md        The document a hostile reviewer would write
+│   ├── known-limitations.md        The document a hostile reviewer would write
+│   ├── supplements/                Generated MD view of every supplement rule
+│   └── labs/                       Generated MD view of every lab marker
+├── scripts/
+│   └── generate-docs.ts            TS catalogs → docs/supplements + docs/labs
 ├── README.md
 ├── LICENSE                         Apache 2.0
 ├── MEDICAL-DISCLAIMER.md
