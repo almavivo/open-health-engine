@@ -43,11 +43,14 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "docs:generate": "tsx scripts/generate-docs.ts",
+    "docs:check": "tsx scripts/generate-docs.ts && git diff --exit-code -- docs/supplements docs/labs && test -z \"$(git status --porcelain -- docs/supplements docs/labs)\"",
     "prepublishOnly": "npm run build && npm test"
   },
   "devDependencies": {
     "@types/node": "^22.15.30",
     "fast-check": "^4.7.0",
+    "tsx": "^4.20.0",
     "typescript": "^5.8.3",
     "vitest": "^4.1.5"
   },
