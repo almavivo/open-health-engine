@@ -1,7 +1,7 @@
 {
   "name": "@almavivo/engine",
   "version": "0.2.0",
-  "description": "Open clinical decision-support engine — supplement and lab recommendations with auditable safety guards.",
+  "description": "Open, deterministic clinical rules engine: supplement, lab, medication-review, and physical-prep guidance with public exclusion lists and named-guideline anchors.",
   "license": "Apache-2.0",
   "homepage": "https://github.com/almavivo/open-health-engine",
   "repository": {
@@ -18,7 +18,12 @@
     "evidence-based",
     "health",
     "nutrition",
-    "lab-recommendations"
+    "lab-recommendations",
+    "lab-interpretation",
+    "medication-review",
+    "physical-prep",
+    "circadian",
+    "nice-guidelines"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

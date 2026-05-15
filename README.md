@@ -1,8 +1,8 @@
 # @almavivo/engine
 
-> An open, deterministic clinical rules engine for supplement and lab
-> recommendations. Audit the rules. Read the exclusions. Fork it if we're
-> wrong.
+> An open, deterministic clinical rules engine for supplement, lab,
+> medication-review, and physical-prep guidance. Audit the rules.
+> Read the exclusions. If something's wrong, open an issue or a PR.
 
 [![ci](https://github.com/almavivo/open-health-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/almavivo/open-health-engine/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](./LICENSE)
