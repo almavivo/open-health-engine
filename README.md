@@ -1,8 +1,10 @@
 # @almavivo/engine
 
 > An open, deterministic clinical rules engine for supplement, lab,
-> medication-review, and physical-prep guidance. Audit the rules.
-> Read the exclusions. If something's wrong, open an issue or a PR.
+> medication-review, physical-prep, symptom-pattern, and family-history-
+> pattern guidance. Audit the rules. Read the exclusions. Read the
+> determination-phrase firewall. If something's wrong, open an issue or
+> a PR.
 
 [![ci](https://github.com/almavivo/open-health-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/almavivo/open-health-engine/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](./LICENSE)
@@ -396,6 +398,15 @@ maintainers in advance.
 │   ├── lab-interpreter.ts          Numeric values → bands + flags
 │   ├── physical-prep.ts            Annual physical prep sheet
 │   ├── shift-planner.ts            Shift-pattern circadian planner
+│   ├── reaction-pattern.ts         Symptom & trigger log classifier + worksheet specs
+│   ├── family-history/             Family Health History pattern detection
+│   │   ├── types.ts                Pedigree types + GuidelineCitation
+│   │   ├── citations.ts            Structured guideline citations
+│   │   ├── labels.ts               CAUSE_LABELS, CANCER_LABELS, DIAGNOSIS_LABELS, …
+│   │   ├── rules.ts                10 detectors + BANNED_DETERMINATION_PHRASES + firewall
+│   │   ├── report.ts               buildReport / whatsMissing / questions-for-relatives
+│   │   ├── parse.ts                parseFamilyHistoryAnswers (defensive, deterministic)
+│   │   └── index.ts                Module surface
 │   ├── medications/                Medication review module
 │   │   ├── catalog.ts              Branded → class lookup
 │   │   ├── classes.ts              Class abstractions + named guideline sources

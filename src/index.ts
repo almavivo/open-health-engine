@@ -122,3 +122,101 @@ export type {
   CatalogMatch,
   BuildOptions,
 } from "./medications";
+
+// 0.3.0 additions ----------------------------------------------------------
+
+// Reaction-pattern classifier (symptom & trigger log). Classifies symptom
+// + timing + suspected-food answers into one of seven pattern labels,
+// emits a public list of hard exclusions for any self-trial worksheet,
+// and exposes the worksheet's tier-B/C/D trigger specs + per-trigger
+// gates so downstream consumers can build their own worksheet UIs.
+export {
+  classifyPattern,
+  listExclusions,
+  hasHardExclusion,
+  patternGuidance,
+  triggerSpec,
+  triggerGate,
+  allowedTriggers,
+  PATTERN_LABEL,
+  PATTERN_BAND_CLASS,
+  TRIGGER_SPECS,
+  EMPTY_LOG_ANSWERS,
+} from "./reaction-pattern";
+export type {
+  LogAnswers,
+  PatternClassification,
+  ExclusionReason,
+  ExclusionReasonId,
+  SymptomKey,
+  TimingKey,
+  HivesDuration,
+  PhysicalTrigger,
+  RhinitisPattern,
+  SuspectedFood,
+  CoeliacStatus,
+  PriorEliminationOutcome,
+  FamilyHistoryItem,
+  YesNo,
+  TriggerEvidence,
+  TriggerSpec,
+  NextStep,
+  PatternGuidance,
+} from "./reaction-pattern";
+
+// Family Health History — pattern detection over a user-built pedigree.
+// Outputs are discussion prompts (clinician / genetic counselor), never
+// determinations. Ships with `BANNED_DETERMINATION_PHRASES` +
+// `enforceFirewall` as an auditable safety contract, and structured
+// `GuidelineCitation` records (the canonical pattern going forward).
+export {
+  detectSignals,
+  enforceFirewall,
+  isFirstDegree,
+  isSecondDegree,
+  buildReport,
+  whatsMissing,
+  buildQuestionsForRelatives,
+  standardLifestylePrompts,
+  summariseRelative,
+  summariseGeneticTest,
+  parseFamilyHistoryAnswers,
+  relationshipLabel,
+  labelForCancer,
+  BANNED_DETERMINATION_PHRASES,
+  EMPTY_FAMILY_HISTORY,
+  CITATIONS as FAMILY_HISTORY_CITATIONS,
+  REVIEW_DATE as FAMILY_HISTORY_CITATIONS_REVIEWED_AT,
+  CAUSE_LABELS,
+  CANCER_LABELS,
+  DIAGNOSIS_LABELS,
+  RELATIONSHIP_LABELS,
+  SIDE_LABELS,
+} from "./family-history";
+export type {
+  FamilyHistoryAnswers,
+  FamilyHistorySelf,
+  Relative,
+  DiagnosisDuringLife,
+  KnownGeneticTest,
+  Confidence,
+  Side,
+  Relationship,
+  SexAtBirth,
+  RelativeStatus,
+  SmokingHistory,
+  CauseOfDeath,
+  CancerType,
+  DiagnosisCondition,
+  GeneticTestSubject,
+  GeneticTestVariantContext,
+  GeneticTestCondition,
+  GeneticTestResult,
+  GuidelineSource,
+  GuidelineCitation,
+  FamilyPatternSignalId,
+  FamilyPatternSignal,
+  MissingItem,
+  RelativeQuestion,
+  FamilyHistoryReport,
+} from "./family-history";
