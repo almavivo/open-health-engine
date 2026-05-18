@@ -1,7 +1,7 @@
 {
   "name": "@almavivo/engine",
-  "version": "0.2.0",
-  "description": "Open, deterministic clinical rules engine: supplement, lab, medication-review, and physical-prep guidance with public exclusion lists and named-guideline anchors.",
+  "version": "0.3.0",
+  "description": "Open, deterministic clinical rules engine: supplement, lab, medication-review, physical-prep, symptom-pattern, and family-history-pattern guidance. Public exclusion lists, structured guideline citations, and an auditable determination-phrase firewall.",
   "license": "Apache-2.0",
   "homepage": "https://github.com/almavivo/open-health-engine",
   "repository": {
@@ -23,7 +23,12 @@
     "medication-review",
     "physical-prep",
     "circadian",
-    "nice-guidelines"
+    "nice-guidelines",
+    "symptom-pattern",
+    "family-history",
+    "pedigree",
+    "uspstf",
+    "acc-aha"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
